@@ -1,24 +1,20 @@
 <template>
 <div>
-  <p>Something</p>
   <table class="table">
     <thead>
       <tr>
+        <td>ID</td>
         <td>Title</td>
         <td>Comment</td>
         <td>Date</td>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Something</td>
-        <td>Some comment</td>
-        <td>2020-09-09</td>
-      </tr>
-      <tr>
-        <td>Something</td>
-        <td>Some comment</td>
-        <td>2020-09-09</td>
+      <tr v-for="comment in comments">
+        <td>{{ comment.id }}</td>
+        <td>{{ comment.title }}</td>
+        <td>{{ comment.comment_text }}</td>
+        <td>{{ comment.created_at }}</td>
       </tr>
     </tbody>
   </table>
@@ -26,4 +22,16 @@
 </template>
 
 <script>
+export default{
+  data(){
+    return{
+      comments: []
+    }
+  },
+  mounted(){
+    axios.get('/api/comments').then(response => {
+      this.comments = response.data;
+    });
+  }
+}
 </script>
