@@ -17,5 +17,8 @@
         "vue": "^2.6.11",
         "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "laravel-vue-pagination": "^2.3.1"
     }
 }

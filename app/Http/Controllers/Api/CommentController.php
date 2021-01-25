@@ -12,6 +12,7 @@ class CommentController extends Controller
     public function index()
     {
         // return Comment::all();
-        return CommentResource::collection(Comment::all());
+        // Working with Resource
+        return CommentResource::collection(Comment::paginate(6));
     }
 }
