@@ -13,7 +13,7 @@
       <tr v-for="comment in comments">
         <td>{{ comment.id }}</td>
         <td>{{ comment.title }}</td>
-        <td>{{ comment.comment_text }}</td>
+        <td>{{ comment.comment_text.substring(0, 30) }}</td>
         <td>{{ comment.created_at }}</td>
       </tr>
     </tbody>
@@ -30,7 +30,7 @@ export default{
   },
   mounted(){
     axios.get('/api/comments').then(response => {
-      this.comments = response.data;
+      this.comments = response.data.data;
     });
   }
 }

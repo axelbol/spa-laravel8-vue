@@ -23,7 +23,7 @@ class CommentFactory extends Factory
     {
         return [
             'title' => $this->faker->word,
-            'comment_text' => $this->faker->sentence,
+            'comment_text' => $this->faker->text(500),
         ];
     }
 }

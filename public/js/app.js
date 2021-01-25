@@ -1878,7 +1878,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get('/api/comments').then(function (response) {
-      _this.comments = response.data;
+      _this.comments = response.data.data;
     });
   }
 });
@@ -19403,7 +19403,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(comment.title))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(comment.comment_text))]),
+            _c("td", [_vm._v(_vm._s(comment.comment_text.substring(0, 30)))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(comment.created_at))])
           ])
