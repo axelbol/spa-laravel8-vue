@@ -1942,10 +1942,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__.default({
   mode: 'history',
   routes: [{
     path: '/',
-    component: _components_Comments_Index_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    component: _components_Comments_Index_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    name: 'comments.index'
   }, {
     path: '/comments/create',
-    component: _components_Comments_Create_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_Comments_Create_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+    name: 'comments.create'
   }]
 });
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
@@ -20183,7 +20185,10 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "comments.index" } }
+                    },
                     [_vm._v("Comments List")]
                   )
                 ],
@@ -20198,7 +20203,7 @@ var render = function() {
                     "router-link",
                     {
                       staticClass: "nav-link",
-                      attrs: { to: "/comments/create" }
+                      attrs: { to: { name: "comments.create" } }
                     },
                     [_vm._v("Create new comment")]
                   )

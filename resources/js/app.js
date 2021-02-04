@@ -15,10 +15,12 @@ const router = new VueRouter({
     {
       path: '/',
       component: CommentsIndex,
+      name: 'comments.index'
     },
     {
       path: '/comments/create',
-      component: CommentsCreate
+      component: CommentsCreate,
+      name: 'comments.create',
     },
   ]
 })
