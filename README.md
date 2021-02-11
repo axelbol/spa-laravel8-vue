@@ -1,6 +1,6 @@
 # Single Page Application with Laravel and Vue
 
-This is a Laravel 8 project where we made a simple CRUD to learn how SPA works.
+This is a Laravel 8 project where we make a simple CRUD to learn how SPA works.
 
 ## How to use
 
