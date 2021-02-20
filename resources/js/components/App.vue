@@ -5,10 +5,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                      <router-link :to="{ name: 'comments.index' }" class="nav-link">Comments List</router-link>
+                      <router-link active-class="active-menu" exact :to="{ name: 'comments.index' }" class="nav-link">Comments List</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link :to="{ name: 'comments.create' }" class="nav-link">Create new comment</router-link>
+                      <router-link active-class="active-menu" exact :to="{ name: 'comments.create' }" class="nav-link">Create new comment</router-link>
                     </li>
                 </ul>
             </div>

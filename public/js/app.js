@@ -20187,7 +20187,11 @@ var render = function() {
                     "router-link",
                     {
                       staticClass: "nav-link",
-                      attrs: { to: { name: "comments.index" } }
+                      attrs: {
+                        "active-class": "active-menu",
+                        exact: "",
+                        to: { name: "comments.index" }
+                      }
                     },
                     [_vm._v("Comments List")]
                   )
@@ -20203,7 +20207,11 @@ var render = function() {
                     "router-link",
                     {
                       staticClass: "nav-link",
-                      attrs: { to: { name: "comments.create" } }
+                      attrs: {
+                        "active-class": "active-menu",
+                        exact: "",
+                        to: { name: "comments.create" }
+                      }
                     },
                     [_vm._v("Create new comment")]
                   )
