@@ -1860,13 +1860,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       fields: {
         'title': '',
         'comment_text': ''
-      }
+      },
+      errors: {}
     };
   },
   methods: {
@@ -1875,6 +1882,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/comments', this.fields).then(function (response) {
         _this.$router.push('/');
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors;
+        }
       });
     }
   }
@@ -20316,6 +20327,12 @@ var render = function() {
           }
         }),
         _vm._v(" "),
+        _vm.errors && _vm.errors.title
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v("\n      " + _vm._s(_vm.errors.title[0]) + "\n    ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("br"),
         _vm._v("\n    Comment Text:\n    "),
         _c("textarea", {
@@ -20339,6 +20356,12 @@ var render = function() {
             }
           }
         }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.comment_text
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v("\n      " + _vm._s(_vm.errors.comment_text[0]) + "\n    ")
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
