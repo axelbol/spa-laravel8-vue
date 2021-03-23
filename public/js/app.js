@@ -1866,6 +1866,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1873,18 +1874,23 @@ __webpack_require__.r(__webpack_exports__);
         'title': '',
         'comment_text': ''
       },
-      errors: {}
+      errors: {},
+      form_submitting: false
     };
   },
   methods: {
     submit_form: function submit_form() {
       var _this = this;
 
+      this.form_submitting = true;
       axios.post('/api/comments', this.fields).then(function (response) {
         _this.$router.push('/');
+
+        _this.form_submitting = false;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors;
+          _this.form_submitting = false;
         }
       });
     }
@@ -20367,7 +20373,10 @@ var render = function() {
         _vm._v(" "),
         _c("input", {
           staticClass: "btn btn-primary",
-          attrs: { type: "submit", value: "Save" }
+          attrs: { type: "submit", disabled: _vm.form_submitting },
+          domProps: {
+            value: _vm.form_submitting ? "Saving comment..." : "Save comment"
+          }
         })
       ]
     )

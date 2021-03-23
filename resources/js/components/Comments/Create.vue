@@ -14,7 +14,8 @@
         {{ errors.comment_text[0] }}
       </div>
       <br>
-      <input type="submit" value="Save" class="btn btn-primary">
+      <input type="submit" class="btn btn-primary" :disabled="form_submitting"
+      :value="form_submitting ? 'Saving comment...' : 'Save comment'">
     </form>
   </div>
 </template>
@@ -27,18 +28,22 @@ export default{
         'title': '',
         'comment_text': '',
       },
-      errors: {}
+      errors: {},
+      form_submitting: false
     }
   },
 
   methods: {
     submit_form() {
+      this.form_submitting = true;
       axios.post('/api/comments', this.fields)
         .then(response => {
-          this.$router.push('/')
+          this.$router.push('/');
+          this.form_submitting = false;
         }).catch(error => {
           if(error.response.status === 422) {
             this.errors = error.response.data.errors;
+          this.form_submitting = false;
           }
         });
     }
