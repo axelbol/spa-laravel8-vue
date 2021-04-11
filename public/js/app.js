@@ -1867,23 +1867,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       fields: {
-        'title': '',
-        'comment_text': ''
+        title: '',
+        comment_text: '',
+        thumbnail: null
       },
       errors: {},
       form_submitting: false
     };
   },
   methods: {
+    select_file: function select_file(event) {
+      this.fields.thumbnail = event.target.files[0];
+    },
     submit_form: function submit_form() {
       var _this = this;
 
-      this.form_submitting = true;
-      axios.post('/api/comments', this.fields).then(function (response) {
+      this.form_submitting = true; //pass thumbnail
+
+      var fields = new FormData();
+
+      for (var key in this.fields) {
+        fields.append(key, this.fields[key]);
+      } // axios.post('/api/comments', this.fields)
+
+
+      axios.post('/api/comments', fields).then(function (response) {
         _this.$router.push('/');
 
         _this.form_submitting = false;
@@ -20369,6 +20385,16 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _c("br"),
+        _vm._v("\n    Thumbnail:\n    "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "file" },
+          on: { change: _vm.select_file }
+        }),
+        _vm._v(" "),
+        _c("br"),
         _c("br"),
         _vm._v(" "),
         _c("input", {

@@ -19,7 +19,11 @@ class CommentController extends Controller
 
     public function store(CommentStoreRequest $request)
     {
-        sleep(3);
+        // sleep(3);
+        if($request->hasFile('thumbnail')){
+            $filename = $request->thumbnail->getClientOriginalName();
+            info($filename); //log
+        }
         $comment = Comment::create($request->validated());
 
         return new CommentResource($comment);
