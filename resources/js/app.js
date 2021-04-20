@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 import App from './components/App.vue'
 import CommentsIndex from './components/Comments/Index.vue'
 import CommentsCreate from './components/Comments/Create.vue'
+import CommentsEdit from './components/Comments/Edit.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -21,6 +22,11 @@ const router = new VueRouter({
       path: '/comments/create',
       component: CommentsCreate,
       name: 'comments.create',
+    },
+    {
+      path: '/comments/edit/:id',
+      component: CommentsEdit,
+      name: 'comments.edit',
     },
   ]
 })

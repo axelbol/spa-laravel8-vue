@@ -38,19 +38,28 @@ export default{
     }
   },
 
+  mounted(){
+    axios.get('/api/comments/' + this.$route.params.id)
+      .then(response => {
+        this.fields = response.data.data;
+      });
+  },
+
   methods: {
     select_file(event){
       this.fields.thumbnail = event.target.files[0];
     },
     submit_form() {
       this.form_submitting = true;
+
       //pass thumbnail
-      let fields = new FormData();
-      for (let key in this.fields){
-        fields.append(key, this.fields[key]);
-      }
-      // axios.post('/api/comments', this.fields)
-      axios.post('/api/comments', fields)
+      // let fields = new FormData();
+      // for (let key in this.fields){
+      //   fields.append(key, this.fields[key]);
+      // }
+
+      // axios.post('/api/comments', fields)
+      axios.put('/api/comments/' + this.$route.params.id, this.fields)
         .then(response => {
           this.$router.push('/');
           this.form_submitting = false;
