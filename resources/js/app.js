@@ -5,6 +5,10 @@ window.Vue = require('vue').default;
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import VueSweetalert2 from "vue-sweetalert2"
+Vue.use(VueSweetalert2)
+import "sweetalert2/dist/sweetalert2.min.css"
+
 import App from './components/App.vue'
 import CommentsIndex from './components/Comments/Index.vue'
 import CommentsCreate from './components/Comments/Create.vue'

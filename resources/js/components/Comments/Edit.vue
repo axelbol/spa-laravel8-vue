@@ -61,10 +61,12 @@ export default{
       // axios.post('/api/comments', fields)
       axios.put('/api/comments/' + this.$route.params.id, this.fields)
         .then(response => {
+          this.$swal({ icon: 'success', title: 'Error happened'});
           this.$router.push('/');
           this.form_submitting = false;
         }).catch(error => {
           if(error.response.status === 422) {
+            this.$swal({ icon: 'warning', title: 'Error happened'});
             this.errors = error.response.data.errors;
           }
           this.form_submitting = false;
