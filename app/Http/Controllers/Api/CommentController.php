@@ -39,4 +39,10 @@ class CommentController extends Controller
         $comment->update($request->validated());
         return new CommentResource(($comment));
     }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+        return response()->noContent();
+    }
 }

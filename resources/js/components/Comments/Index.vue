@@ -17,7 +17,8 @@
         <td>{{ comment.comment_text.substring(0, 30) }}</td>
         <td>{{ comment.created_at }}</td>
         <td>
-          <router-link :to="{ name: 'comments.edit', params:{ id:comment.id } }">Edit</router-link>
+          <router-link class="btn btn-info btn-sm" :to="{ name: 'comments.edit', params:{ id:comment.id } }">Edit</router-link>
+          <button @click="delete_comment(comment.id)" class="btn btn-danger btn-sm">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -48,7 +49,29 @@ export default{
 				.then(response => {
 					this.comments = response.data;
 				});
-		}
+		},
+
+    delete_comment(comment_id) {
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You won´t be able to revert this',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it'
+      }).then((result) => {
+        if(result.value){
+          axios.delete('/api/comments/' + comment_id)
+            .then(response => {
+              this.$swal({icon: 'error', title: 'Deleted successfully'});
+              this.getResults();
+            }).catch(error => {
+              this.$swal({icon: 'error', title: 'Error happened'});
+            });
+        }
+      })
+    }
 	}
 }
 </script>

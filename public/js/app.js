@@ -2060,6 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2080,6 +2081,35 @@ __webpack_require__.r(__webpack_exports__);
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('/api/comments?page=' + page).then(function (response) {
         _this.comments = response.data;
+      });
+    },
+    delete_comment: function delete_comment(comment_id) {
+      var _this2 = this;
+
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You won´t be able to revert this',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/api/comments/' + comment_id).then(function (response) {
+            _this2.$swal({
+              icon: 'error',
+              title: 'Deleted successfully'
+            });
+
+            _this2.getResults();
+          })["catch"](function (error) {
+            _this2.$swal({
+              icon: 'error',
+              title: 'Error happened'
+            });
+          });
+        }
       });
     }
   }
@@ -24820,6 +24850,7 @@ var render = function() {
                   _c(
                     "router-link",
                     {
+                      staticClass: "btn btn-info btn-sm",
                       attrs: {
                         to: {
                           name: "comments.edit",
@@ -24828,6 +24859,19 @@ var render = function() {
                       }
                     },
                     [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.delete_comment(comment.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
                   )
                 ],
                 1
